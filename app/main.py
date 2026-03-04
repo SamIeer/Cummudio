@@ -1,8 +1,11 @@
 from fastapi import FastAPI
 from sqlalchemy import text
-from app.core.database import engine
+from app.core.database import engine, Base
+from app.models.user import User
 
 app = FastAPI()
+
+Base.metadata.create_all(bind=engine)
 
 @app.get("/")
 def health_check():
