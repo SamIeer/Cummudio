@@ -5,8 +5,9 @@ def get_user_by_email(db: Session, email: str) -> User | None:
     return db.query(User).filter(User.email == email).first()
 
 def create_user(db: Session, email: str, username: str, hashed_password: str) -> User:
-    if get_user_by_email(db,email):
-        print("User Alredy exists")
+    try:
+        if get_user_by_email(db,email):
+            print("User Alredy exists")
     else:
         user = User(email=email,username=username, hashed_password=hashed_password) # Creating the Object
         db.add(user)  # stage the object -> i want to insert it in db -> added to session's pending changes
