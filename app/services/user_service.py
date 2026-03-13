@@ -29,3 +29,11 @@ def register_user(db: Session, user_data: CreateUser) -> UserResponse:
     )
     return UserResponse.model_validate(user)
 
+'''
+Thus repository will:
+-> Create ORM object 
+-> Add to session
+-> commit 
+-> Refresh
+-> Return ORM model
+'''
